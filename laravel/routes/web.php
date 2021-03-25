@@ -50,4 +50,19 @@ Route::get('thehell',function(){
 //     });
 //  });
 
-Route::get('/server', DatproController::class);
+Route::get('/dat', [DatproController::class,'datdeptrai']);
+Route::get('/getform',function(){
+    return view('kiemtra');
+});
+Route::post('postform', [DatproController::class,'setcookie'])->name('postform');
+Route::get('getuot', [DatproController::class,'getcookie']);
+
+
+Route::get('home', function () {
+    return response($content)
+    ->header('Content-Type', $type)
+    ->cookie('name', 'value', $minutes);
+});
+Route::get('home1', function () {
+    echo "Hello World";
+});
