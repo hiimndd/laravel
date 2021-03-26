@@ -58,11 +58,22 @@ Route::post('postform', [DatproController::class,'setcookie'])->name('postform')
 Route::get('getuot', [DatproController::class,'getcookie']);
 
 
-Route::get('home', function () {
-    return response($content)
-    ->header('Content-Type', $type)
-    ->cookie('name', 'value', $minutes);
-});
+// Route::get('home', function () {
+//     return response($content)
+//     ->header('Content-Type', $type)
+//     ->cookie('name', 'value', $minutes);
+// });
 Route::get('home1', function () {
     echo "Hello World";
 });
+
+Route::get('home', function () {
+    return view('pages.home');
+})->name('home');
+Route::get('home/add', function () {
+    return view('pages.add');
+})->name('add');
+Route::get('cratetable', function () {
+    schema::create('informat');
+});
+Route::Resource('user', 'AdminController');
