@@ -55,7 +55,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="{{route('home')}}">Home</a></li>
+        <li class="active"><a href="{{route('home.index')}}">Home</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Projects</a></li>
         <li><a href="#">Contact</a></li>
@@ -70,7 +70,7 @@
 <div class="container-fluid text-center">    
   <div class="row content">
     <div class="col-sm-2 sidenav">
-      <p><a href="{{route('add')}}">Thêm</a></p>
+      <p><a href="{{route('home.create')}}">Thêm</a></p>
       
     </div>
     <div class="col-sm-8 text-left"> 

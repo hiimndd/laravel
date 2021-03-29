@@ -16,9 +16,10 @@
 
     
     <h2>THÊM SINH VIÊN</h2>
-    <a href=""><button type="button" class="btn btn-default" name="bttxt">Về Trang Chính</button></a> 
+    <a href="{{route('home.index')}}"><button type="button" class="btn btn-default" name="bttxt">Về Trang Chính</button></a> 
     
-  <form action="" method="POST">
+  <form action="{{route('home.store')}}" method="POST">
+  @csrf
     <div class="form-group">
     
       <label for="hoten">Họ Tên :</label>
@@ -37,16 +38,7 @@
     
 
   </form>
-  <?php if(isset($_SESSION["massage"])){
-          echo $_SESSION["massage"];
-          
-    } ?>
-  <?php
-
-
  
-
-  ?>
   
 </div>
 </body>

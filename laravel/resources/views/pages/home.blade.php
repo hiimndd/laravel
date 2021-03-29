@@ -32,15 +32,16 @@
     </thead>
   <tbody>
   <?php 
-          
-          
-          
-          
-         
 
-       echo "giao diện";
-          
           ?>
+        @foreach($student as $row)
+        <tr>
+        <td>{{ $row['hoten'] }}</td>
+        <td>{{ $row['mssv'] }}</td>
+        <td>{{ $row['ngaysinh'] }}</td>
+        <td><a href = "{{ route('home.edit', $row['id']) }}"><button type="button" class="btn btn-primary">sửa</button><a> </a><a href = "" onclick="return confirm('Bạn có chắc muốn xóa thông tin này trong file json?')"><button type="button" class="btn btn-primary">xóa</button></a></td>
+        
+        @endforeach
         
       </tr>
     </tbody>

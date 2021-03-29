@@ -30,13 +30,13 @@ Route::get('/', function () {
 //     return redirect()->route('myroute');
 //  });
 
-Route::get('route',function(){
-    echo "chon cai lao`";
- })->name('myroute');
+// Route::get('route',function(){
+//     echo "chon cai lao`";
+//  })->name('myroute');
 
-Route::get('thehell',function(){
-    return redirect()->route('myroute');
-});
+// Route::get('thehell',function(){
+//     return redirect()->route('myroute');
+// });
 
 //  Route::group(['prefix'=>'Mygroup'],function(){
 //     Route::get('user1',function(){
@@ -50,12 +50,12 @@ Route::get('thehell',function(){
 //     });
 //  });
 
-Route::get('/dat', [DatproController::class,'datdeptrai']);
-Route::get('/getform',function(){
-    return view('kiemtra');
-});
-Route::post('postform', [DatproController::class,'setcookie'])->name('postform');
-Route::get('getuot', [DatproController::class,'getcookie']);
+// Route::get('/dat', [DatproController::class,'datdeptrai']);
+// Route::get('/getform',function(){
+//     return view('kiemtra');
+// });
+// Route::post('postform', [DatproController::class,'setcookie'])->name('postform');
+// Route::get('getuot', [DatproController::class,'getcookie']);
 
 
 // Route::get('home', function () {
@@ -63,17 +63,17 @@ Route::get('getuot', [DatproController::class,'getcookie']);
 //     ->header('Content-Type', $type)
 //     ->cookie('name', 'value', $minutes);
 // });
-Route::get('home1', function () {
-    echo "Hello World";
-});
+// Route::get('home1', function () {
+//     echo "Hello World";
+// });
 
-Route::get('home', function () {
-    return view('pages.home');
-})->name('home');
-Route::get('home/add', function () {
-    return view('pages.add');
-})->name('add');
-Route::get('cratetable', function () {
-    schema::create('informat');
-});
-Route::Resource('user', 'AdminController');
+// Route::get('aaa', function () {
+//     return view('pages.home');
+// })->name('home');
+// Route::get('home/create', function () {
+//     return view('pages.add');
+// })->name('add');
+// Route::get('cratetable', function () {
+//     schema::create('informat');
+// });
+Route::Resource('home', StudentController::class);

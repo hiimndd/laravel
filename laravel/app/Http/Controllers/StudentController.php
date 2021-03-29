@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\student;
 
-class AdminController extends Controller
+class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,18 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
-        $bien = student::get();
-        return $bien;
+        $student = Student::all()->toArray();
+        return view('pages.home',['student'=>$student]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('pages.add');
     }
 
     /**
@@ -27,7 +36,13 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new Student();
+        $data->hoten = $request->hoten;
+        $data->mssv = $request->mssv;
+        $data->ngaysinh = $request->ngaysinh;
+        $data->save();
+        return $this->index();
+
     }
 
     /**
@@ -42,6 +57,20 @@ class AdminController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //hien form
+        
+        $sv = Student::find($id)->toArray();
+        return view('pages.edit',['sv'=>$sv]);
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -50,9 +79,9 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $a = information::find($id);
-        return $a;
-
+        
+        Student::find($id)->update($request->all());
+        return redirect()->route('home.index')->with('success','Post update success');
     }
 
     /**
