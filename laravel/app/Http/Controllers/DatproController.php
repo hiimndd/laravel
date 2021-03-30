@@ -30,7 +30,7 @@ class DatproController extends Controller
     public function setcookie(Request $request){
         
         $response = new Response();
-        $response->withCookie('name', $request->hoten ,0.5);
+        $response->withCookie('name', $request->hoten ,2);
         return $response;
     }
     public function getcookie(Request $request){

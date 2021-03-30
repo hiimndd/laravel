@@ -20,6 +20,11 @@
   
   
   <p>MYSQL PDO</p>
+  @if(session('notification'))
+    <div class="alert alert-success">
+      {{session('notification')}}
+    </div>
+  @endif
   <table class="table table-striped">
   <thead>
       <tr>
@@ -39,11 +44,20 @@
         <td>{{ $row['hoten'] }}</td>
         <td>{{ $row['mssv'] }}</td>
         <td>{{ $row['ngaysinh'] }}</td>
-        <td><a href = "{{ route('home.edit', $row['id']) }}"><button type="button" class="btn btn-primary">sửa</button><a> </a><a href = "" onclick="return confirm('Bạn có chắc muốn xóa thông tin này trong file json?')"><button type="button" class="btn btn-primary">xóa</button></a></td>
+        <td>
         
+        <form action="{{route('home.destroy',$row['id'])}}" method="post">
+          <a href = "{{ route('home.edit', $row['id']) }}"><button type="button" class="btn btn-primary">sửa</button><a> </a>
+          @csrf
+          @method('DELETE')
+          <a onclick="return confirm('Bạn có chắc muốn xóa thông tin này')">
+          <button type="submit" class="btn btn-primary">xóa</button></a>
+        </form>
+        </td>
+        </tr>
         @endforeach
         
-      </tr>
+      
     </tbody>
   </table>
   

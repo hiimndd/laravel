@@ -37,11 +37,25 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $data = new Student();
+        $this->validate($request,
+        [
+            'hoten' => 'required',
+            'mssv' => "required|unique:students,mssv",
+            'ngaysinh' => 'required'
+        ],[
+            'hoten.required' => 'Không bỏ trống tên sinh viên',
+            'mssv.required' => 'Không bỏ trống mã số sinh viên',
+            'mssv.unique' => 'Trùng mã sinh viên',
+            'ngaysinh.required' => 'Không bỏ trống ngày sinh'
+        ]);
+        
+        
         $data->hoten = $request->hoten;
         $data->mssv = $request->mssv;
         $data->ngaysinh = $request->ngaysinh;
         $data->save();
-        return $this->index();
+        
+        return redirect()->route('home.create',$id)->with("'notification','Thêm thành công!'");
 
     }
 
@@ -80,9 +94,35 @@ class StudentController extends Controller
     public function update(Request $request, $id)
     {
         
-        Student::find($id)->update($request->all());
-        return redirect()->route('home.index')->with('success','Post update success');
+        $sv = Student::find($id);
+        //$id= $this->id;
+        
+        $this->validate($request,
+        [
+            'hoten' => 'required',
+            'mssv' => "required|unique:students,mssv,$id",
+            'ngaysinh' => 'required'
+        ],[
+            'hoten.required' => 'Không bỏ trống tên sinh viên',
+            'mssv.required' => 'Không bỏ trống mã số sinh viên',
+            'mssv.unique' => 'Trùng mã sinh viên',
+            'ngaysinh.required' => 'Không bỏ trống ngày sinh'
+        ]);
+        
+        $sv->hoten = $request->hoten;
+        $sv->mssv = $request->mssv;
+        $sv->ngaysinh = $request->ngaysinh;
+        $sv->save();
+        return redirect()->route('home.edit',$id)->with('notification','Sữa thành công!');
     }
+    // public function savetext(Request $request){
+    //     $response = new Response();
+    //     $response->withCookie('hoten', $request->hoten ,2);
+    //     $response->withCookie('mssv', $request->mssv ,2);
+    //     $response->withCookie('ngaysinh', $request->ngaysinh ,2);
+    //     return $response;
+        
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -92,6 +132,8 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sv = Student::find($id);
+        $sv->delete();
+        return redirect()->route('home.index')->with('notification','Xóa thành công!');
     }
 }

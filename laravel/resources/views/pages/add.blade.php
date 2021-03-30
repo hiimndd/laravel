@@ -24,23 +24,61 @@
     
       <label for="hoten">Họ Tên :</label>
       
-      <input type="text" class="form-control" id="hoten" value="" placeholder="Họ tên sinh viên" name="hoten">
+      <input type="text" class="form-control" id="hoten"  value="" placeholder="Họ tên sinh viên" name="hoten">
+      @if($errors->has('hoten'))
+        <div class="form-row">
+        <div class="alert alert-danger">
+          {{$errors->first('hoten')}}
+        </div>
+        </div>
+      @endif 
     </div>
+    
     <div class="form-group">
         <label for="mssv">Mã số sinh viên :</label>
         <input type="text" class="form-control" id="mssv" value="" placeholder="mã số sinh viên" name="mssv">
+        @if($errors->has('mssv'))
+        <div class="form-row">
+        <div class="alert alert-danger">
+          {{$errors->first('mssv')}}
+        </div>
+        </div>
+      @endif
       </div>
       <div class="form-group">
         <label for="ngaysinh">Ngày sinh :</label>
         <input type="date" class="form-control" id="ngaysinh" value="" name="ngaysinh">
+        @if($errors->has('ngaysinh'))
+        <div class="form-row">
+        <div class="alert alert-danger">
+          {{$errors->first('ngaysinh')}}
+        </div>
+        </div>
+      @endif
       </div>
     <button type="submit" class="btn btn-default" name="btn_insert">Thêm sinh viên</button>
     
 
   </form>
- 
   
+  <!-- @if(count($errors) > 0)
+      <div class="alert alert-danger">
+        @foreach($errors -> all() as $error)
+          {{$error}}<br>
+        @endforeach
+      </div>
+  @endif -->
+  @if(session('notification'))
+    <div class="alert alert-success">
+      {{session('notification')}}
+    </div>
+  @endif
 </div>
 </body>
 </html>
 @endsection
+
+
+
+
+                                      

@@ -16,7 +16,8 @@
 <div class="container">
     <h2>sửa thông tin sinh viên</h2>
     
-  <form action="{{route('home.update',$sv['id'])}}" method="POST">
+  <form action="{{route('home.update',$sv['id'])}}" method="post">
+  @method('put')
   @csrf
     <div class="form-group">
     
@@ -33,4 +34,18 @@
       </div>
     <button type="submit" class="btn btn-default" name="btn_update">Lưu</button>
     </form>
+    @if(count($errors) > 0)
+      <div class="alert alert-danger">
+        @foreach($errors -> all() as $error)
+          {{$error}}<br>
+        @endforeach
+      </div>
+    @endif
+    
+    
+  @if(session('notification'))
+    <div class="alert alert-success">
+      {{session('notification')}}
+    </div>
+  @endif
   @endsection
